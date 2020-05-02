@@ -15,3 +15,6 @@ sudo docker run --name gobarber-postgres -e POSTGRES_PASSWORD=1234 -p 5432:5432 
 Abra o PostBird e crie uma db gobarber.
 
 5 - Configurando Sequelize (veja as Configurações, você sabe onde).
+
+6 - Migration de usuário e CRUD de usuário.
+
