@@ -4,6 +4,7 @@ import multer from 'multer';
 import multerConfig from './config/multer';
 
 import userController from './app/controllers/UserController';
+import providerController from './app/controllers/ProviderController';
 import sessionController from './app/controllers/SessionController';
 import fileController from './app/controllers/FileController';
 
@@ -16,6 +17,11 @@ const upload = multer(multerConfig);
 routes.post('/users', userController.store);
 routes.get('/users', userController.index);
 routes.put('/users', authMiddleware, userController.update);
+
+// Provider routes
+routes.get('/providers', providerController.index);
+// routes.post('/providers', providerController.store);
+// routes.put('/providers', providerController.update);
 
 // Session routes
 routes.post('/sessions', sessionController.store);
