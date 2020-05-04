@@ -6,7 +6,7 @@
 
 3 - Crie/Configurando .gitignore; Configurando eslint, prettier e .editorconfig.
 
-4 - Configurando Docker
+4 - Configurando DB relacional
 
 Crie uma instância do db PostgreSQL:
 
@@ -24,3 +24,14 @@ Abra o PostBird e crie uma db gobarber.
 
 9 - Criando listagem de agendamentos para um usuário provider e usuário não provider.
 
+10 - Configurando DB não relacional para guardar dados que não precisam de relação/estruturação.
+
+Crie uma instância do db MongoDB:
+
+sudo docker run --name gobarber-mongo -p 27017:27017 -d -t mongo
+
+Abra o Robot3t.
+
+11 - Configurando MongooseORM
+
+12 - Notificando novos agendamentos
