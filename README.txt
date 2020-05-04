@@ -19,3 +19,6 @@ Abra o PostBird e crie uma db gobarber.
 6 - Migration de usuário e CRUD de usuário. (Validações e Autenticação)
 
 7 - Configurando o Multer para upload de arquivos.
+
+8 - Configurando providers e agendamentos.
+
