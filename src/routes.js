@@ -33,6 +33,7 @@ routes.get('/schedule', authMiddleware, scheduleController.index);
 
 // Notification routes
 routes.get('/notifications', authMiddleware, notificationController.index);
+routes.put('/notifications/:id', authMiddleware, notificationController.update);
 
 // Session routes
 routes.post('/sessions', sessionController.store);
