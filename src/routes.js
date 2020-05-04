@@ -25,6 +25,7 @@ routes.get('/providers', providerController.index);
 // routes.put('/providers', providerController.update);
 
 // Appointment routes
+routes.get('/appointments', authMiddleware, appointmentController.index);
 routes.post('/appointments', authMiddleware, appointmentController.store);
 
 // Session routes
