@@ -22,3 +22,5 @@ Abra o PostBird e crie uma db gobarber.
 
 8 - Configurando providers e agendamentos.
 
+9 - Criando listagem de agendamentos para um usuário provider e usuário não provider.
+

@@ -6,6 +6,7 @@ import multerConfig from './config/multer';
 import userController from './app/controllers/UserController';
 import providerController from './app/controllers/ProviderController';
 import appointmentController from './app/controllers/AppointmentController';
+import scheduleController from './app/controllers/ScheduleController';
 import sessionController from './app/controllers/SessionController';
 import fileController from './app/controllers/FileController';
 
@@ -21,12 +22,13 @@ routes.put('/users', authMiddleware, userController.update);
 
 // Provider routes
 routes.get('/providers', providerController.index);
-// routes.post('/providers', providerController.store);
-// routes.put('/providers', providerController.update);
 
 // Appointment routes
 routes.get('/appointments', authMiddleware, appointmentController.index);
 routes.post('/appointments', authMiddleware, appointmentController.store);
+
+// Schedule routes (The appointment index method, for providers.)
+routes.get('/schedule', authMiddleware, scheduleController.index);
 
 // Session routes
 routes.post('/sessions', sessionController.store);
