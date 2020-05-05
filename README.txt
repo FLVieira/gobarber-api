@@ -35,3 +35,9 @@ Abra o Robot3t.
 11 - Configurando MongooseORM
 
 12 - Notificando novos agendamentos
+
+13 - Listando e marcando notificações como lidas.
+
+14 - Cancelamento de agendamento
+
+15 - Configurando nodemailer e templates de emails

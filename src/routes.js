@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Router } from 'express';
 
 import multer from 'multer';
@@ -27,6 +28,7 @@ routes.get('/providers', providerController.index);
 // Appointment routes
 routes.get('/appointments', authMiddleware, appointmentController.index);
 routes.post('/appointments', authMiddleware, appointmentController.store);
+routes.delete('/appointments/:id', authMiddleware, appointmentController.delete);
 
 // Schedule routes (The appointment index method, for providers.)
 routes.get('/schedule', authMiddleware, scheduleController.index);
