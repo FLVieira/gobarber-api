@@ -3,7 +3,7 @@ import Bee from 'bee-queue';
 import redisConfig from '../config/redis';
 import CancellationMail from '../app/jobs/CancellationMail';
 
-const jobs = [CancellationMail]; // Para cada um dos jobs é criado uma fila.
+const jobs = [CancellationMail]; // For each job, a queue is created.
 
 class Queue {
   constructor() {
@@ -13,7 +13,7 @@ class Queue {
   }
 
   init() {
-    // Inicializando as filas
+    // Initializing the queues
     jobs.forEach(({ key, handle }) => {
       this.queues[key] = {
         bee: new Bee(key, {
@@ -25,16 +25,21 @@ class Queue {
   }
 
   add(queue, job) {
-    // Adicionando novos items dentro das filas
+    // Adding new items into the queues
     return this.queues[queue].bee.createJob(job).save();
   }
 
   processQueue() {
-    // Processando items dentro das filas
+    // Processing the items inside the queues
     jobs.forEach((job) => {
       const { bee, handle } = this.queues[job.key];
-      bee.process(handle);
+
+      bee.on('failed', this.handleFailure).process(handle);
     });
+  }
+
+  handleFailure(job, err) {
+    console.log(`Queue ${job.queue.name}: FAILED`, err);
   }
 }
 

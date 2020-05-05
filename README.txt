@@ -56,6 +56,8 @@ Instale o Bee Queue (Ferramento de background jobs/filas) - yarn add bee-queue e
 Obs: Todos os trabalhos dentro de uma fila são chamados de Jobs, assim como Models para um db
 relacional ou Schemas para o MongoDB.
 
-18 -
+18 - Monitorando falhas na fila
+
+19 -
 
 
