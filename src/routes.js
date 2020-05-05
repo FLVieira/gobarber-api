@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { Router } from 'express';
 
 import multer from 'multer';
@@ -10,6 +9,7 @@ import appointmentController from './app/controllers/AppointmentController';
 import sessionController from './app/controllers/SessionController';
 import scheduleController from './app/controllers/ScheduleController';
 import notificationController from './app/controllers/NotificationController';
+import availableController from './app/controllers/AvailableController';
 import fileController from './app/controllers/FileController';
 
 import authMiddleware from './app/middlewares/auth';
@@ -22,23 +22,28 @@ routes.post('/users', userController.store);
 routes.get('/users', userController.index);
 routes.put('/users', authMiddleware, userController.update);
 
-// Provider routes
-routes.get('/providers', providerController.index);
-
-// Appointment routes
-routes.get('/appointments', authMiddleware, appointmentController.index);
-routes.post('/appointments', authMiddleware, appointmentController.store);
-routes.delete('/appointments/:id', authMiddleware, appointmentController.delete);
-
-// Schedule routes (The appointment index method, for providers.)
-routes.get('/schedule', authMiddleware, scheduleController.index);
-
-// Notification routes
-routes.get('/notifications', authMiddleware, notificationController.index);
-routes.put('/notifications/:id', authMiddleware, notificationController.update);
-
 // Session routes
 routes.post('/sessions', sessionController.store);
+
+// Routes that require authentication -----
+
+routes.use(authMiddleware);
+
+// Provider routes
+routes.get('/providers', providerController.index);
+routes.get('/providers/:providerId/available', availableController.index);
+
+// Appointment routes
+routes.get('/appointments', appointmentController.index);
+routes.post('/appointments', appointmentController.store);
+routes.delete('/appointments/:id', appointmentController.delete);
+
+// Schedule routes (The appointment index method, for providers.)
+routes.get('/schedule', scheduleController.index);
+
+// Notification routes
+routes.get('/notifications', notificationController.index);
+routes.put('/notifications/:id', notificationController.update);
 
 // File routes
 routes.post('/files', upload.single('file'), fileController.store);
