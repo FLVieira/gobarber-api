@@ -141,17 +141,28 @@ class AppointmentController {
 
     await appointment.save();
 
-    const provider = await User.findByPk(appointment.provider_id, {
-      attributes: ['name', 'email'],
-    });
-
     /**
      * Sending an notice email to the provider.
      */
+
+    const provider = await User.findByPk(appointment.provider_id, {
+      attributes: ['name', 'email'],
+    });
+    const customer = await User.findByPk(appointment.user_id, {
+      attributes: ['name'],
+    });
+
     await Mail.sendMail({
       to: `${provider.name} <${provider.email}>`,
       subject: 'Agendamento cancelado',
-      text: 'Você tem um novo cancelamento',
+      template: 'cancellation',
+      context: {
+        provider: provider.name,
+        user: customer.name,
+        date: format(appointment.date, "'dia' dd 'de' MMMM', às' H:mm'h'", {
+          locale: pt,
+        }),
+      },
     });
 
     return res.json(appointment);

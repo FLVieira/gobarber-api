@@ -40,8 +40,10 @@ Abra o Robot3t.
 
 14 - Cancelamento de agendamento
 
-15 - Configurando nodemailer e templates de emails
+15 - Configurando nodemailer
 
 Para SMTP em produção, use Amazon SES, Mailgun, Sparkpost.
 Não é legal usar o SMTP em produção direto do GMAIL, pois ele bloqueia a gente em certas ações.
 Para desenvolvimento usaremos o MailTrap. (que não funcionará em produção).
+
+16 - Configurando templates de emails
