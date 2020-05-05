@@ -6,7 +6,9 @@ import User from '../models/User';
 import File from '../models/File';
 import Appointment from '../models/Appointment';
 import Notification from '../schemas/Notification';
-import Mail from '../../lib/Mail';
+
+import Queue from '../../lib/Queue';
+import CancellationMail from '../jobs/CancellationMail';
 
 class AppointmentController {
   async index(req, res) {
@@ -127,7 +129,7 @@ class AppointmentController {
 
     /**
      * The cut-off time for canceling an appointment is 2 hours before itself.
-     * Check if the the canceling is at least 2 hours from the date of the appointment.
+     * Check if the canceling is at least 2 hours from the date of the appointment.
      */
     const dateWithSub = subHours(appointment.date, 2); // Appointment date - 2hr.
     if (isBefore(dateWithSub, new Date())) {
@@ -144,25 +146,16 @@ class AppointmentController {
     /**
      * Sending an notice email to the provider.
      */
-
     const provider = await User.findByPk(appointment.provider_id, {
       attributes: ['name', 'email'],
     });
     const customer = await User.findByPk(appointment.user_id, {
       attributes: ['name'],
     });
-
-    await Mail.sendMail({
-      to: `${provider.name} <${provider.email}>`,
-      subject: 'Agendamento cancelado',
-      template: 'cancellation',
-      context: {
-        provider: provider.name,
-        user: customer.name,
-        date: format(appointment.date, "'dia' dd 'de' MMMM', às' H:mm'h'", {
-          locale: pt,
-        }),
-      },
+    Queue.add(CancellationMail.key, {
+      provider,
+      customer,
+      appointment,
     });
 
     return res.json(appointment);

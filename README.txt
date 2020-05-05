@@ -30,7 +30,7 @@ Crie uma instância do db MongoDB:
 
 sudo docker run --name gobarber-mongo -p 27017:27017 -d -t mongo
 
-Abra o Robot3t.
+Abra o MongoDB Compass
 
 11 - Configurando MongooseORM
 
@@ -47,3 +47,15 @@ Não é legal usar o SMTP em produção direto do GMAIL, pois ele bloqueia a gen
 Para desenvolvimento usaremos o MailTrap. (que não funcionará em produção).
 
 16 - Configurando templates de emails
+
+17 - Configurando fila/background jobs com Redis (db não relacional sem schemas, somente com chave/valor)
+
+sudo docker run --name gobarber-redis -p 6379:6379 -d -t redis:alpine
+
+Instale o Bee Queue (Ferramento de background jobs/filas) - yarn add bee-queue e o configure.
+Obs: Todos os trabalhos dentro de uma fila são chamados de Jobs, assim como Models para um db
+relacional ou Schemas para o MongoDB.
+
+18 -
+
+
