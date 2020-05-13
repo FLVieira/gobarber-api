@@ -58,6 +58,10 @@ relacional ou Schemas para o MongoDB.
 
 18 - Monitorando falhas na fila
 
-19 -
+19:
+1 - Adicionando CORS
+2 - Retornando avatar e campo provider na autenticação do usuário
+3 - Retornando avatar na edição do usuário
+4 - Retornando o nome do usuário no schedulecontroller
 
 
