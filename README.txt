@@ -63,5 +63,5 @@ relacional ou Schemas para o MongoDB.
 2 - Retornando avatar e campo provider na autenticação do usuário
 3 - Retornando avatar na edição do usuário
 4 - Retornando o nome do usuário no schedulecontroller
-
+5 - Mudando o APP_URL e o APP_PORT no .env pra 3001
 

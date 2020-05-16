@@ -32,7 +32,7 @@ class ScheduleController {
         {
           model: User,
           as: 'user',
-          include: ['name'],
+          attributes: ['name'],
         },
       ],
       order: ['date'],
