@@ -61,7 +61,7 @@ Serviços -
 
 2. É necessário ter uma instância de banco de dados postgres rodando e a partir dela criar uma base de dados com um nome qualquer, adicionando então, estes dados ao arquivo de configuração
 
-> \$ docker run --name gobarber-postgres -e POSTGRES_PASSWORD=1234 -p 5433:5432 -d postgres
+> \$ docker run --name gobarber-postgres -e POSTGRES_PASSWORD=1234 -p 5432:5432 -d postgres
 
 ```
 # Database
@@ -80,8 +80,7 @@ DB_PASSWORD=
 > \$ docker run --name gobarber-mongo r -p 27017:27017 -d -t mongo
 
 ```
-MONGO_URL=
-
+MONGO_URL=mongodb://localhost:27017/gobarber
 REDIS_HOST=127.0.0.1
 REDIS_PORT=6379
 ```
